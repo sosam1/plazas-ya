@@ -32,3 +32,5 @@ Route::get('/actividad', [ActividadController::class, 'GetActividades']);
 Route::get('/actividad/{id}', [ActividadController::class, 'GetActividad']);
 Route::put('/actividad/{id}', [ActividadController::class, 'UpdateActividad']);
 Route::delete('/actividad/{id}', [ActividadController::class, 'DeleteActividad']);
+
+Route::post('/actividad/asignar', [ActividadController::class, 'AsignarActividadAPlaza']);
