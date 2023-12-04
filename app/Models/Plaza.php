@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Direcciones extends Model
+class Plaza extends Model
 {
     use HasFactory;
 
-    protected $table = "direcciones";
+    protected $table = "plaza";
 
     public $timestamps = false;
-    protected $fillable = ['direccion', 'latitud', 'longitud', 'descripcion'];
-
+    protected $fillable = ['direccion', 'latitud', 'longitud'];
 }

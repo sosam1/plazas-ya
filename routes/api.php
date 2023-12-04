@@ -2,9 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\app\Models\Direcciones;
-use App\Http\Controllers\DireccionesController;
-
+use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\PlazaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/direcciones', [DireccionesController::class, 'CreateDireccion']);
-Route::get('/direcciones', [DireccionesController::class, 'GetDirecciones']);
-Route::get('/direcciones/{id}', [DireccionesController::class, 'GetDireccion']);
-Route::put('/direcciones/{id}', [DireccionesController::class, 'UpdateDireccion']);
-Route::delete('/direcciones/{id}', [DireccionesController::class, 'DeleteDireccion']);
+Route::post('/plaza', [PlazaController::class, 'CreatePlaza']);
+Route::get('/plaza', [PlazaController::class, 'GetPlazas']);
+Route::get('/plaza/{id}', [PlazaController::class, 'GetPlaza']);
+Route::put('/plaza/{id}', [PlazaController::class, 'UpdatePlaza']);
+Route::delete('/plaza/{id}', [PlazaController::class, 'DeletePlaza']);
+
+
+Route::post('/actividad', [ActividadController::class, 'CreateActividad']);
+Route::get('/actividad', [ActividadController::class, 'GetActividades']);
+Route::get('/actividad/{id}', [ActividadController::class, 'GetActividad']);
+Route::put('/actividad/{id}', [ActividadController::class, 'UpdateActividad']);
+Route::delete('/actividad/{id}', [ActividadController::class, 'DeleteActividad']);
