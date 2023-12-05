@@ -34,3 +34,4 @@ Route::put('/actividad/{id}', [ActividadController::class, 'UpdateActividad']);
 Route::delete('/actividad/{id}', [ActividadController::class, 'DeleteActividad']);
 
 Route::post('/actividad/asignar', [ActividadController::class, 'AsignarActividadAPlaza']);
+Route::post('/plaza/resena', [ActividadController::class, 'CreateResena']);

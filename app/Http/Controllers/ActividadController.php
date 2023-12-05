@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Actividad;
 use App\Models\Plaza;
+use App\Models\Resena;
 use App\Models\Plaza_actividad;
 
 class ActividadController extends Controller
@@ -58,5 +59,20 @@ class ActividadController extends Controller
         return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " " . $asignacion]);
     }
     
+    public function CreateResena(Request $request){
+
+        $resena = new Resena();
+
+        $resena->id_plaza = $request->post('id_plaza');
+        $resena->descripcion = $request->post('descripcion');
+        $resena->puntuacion = $request->post('puntuacion');
+
+        $resena->save();
+
+        return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " " . $resena]);
+
+
+    }
+
 
 }
