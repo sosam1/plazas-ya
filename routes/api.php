@@ -26,7 +26,6 @@ Route::get('/plaza/{id}', [PlazaController::class, 'GetPlaza']);
 Route::put('/plaza/{id}', [PlazaController::class, 'UpdatePlaza']);
 Route::delete('/plaza/{id}', [PlazaController::class, 'DeletePlaza']);
 
-
 Route::post('/actividad', [ActividadController::class, 'CreateActividad']);
 Route::get('/actividad', [ActividadController::class, 'GetActividades']);
 Route::get('/actividad/{id}', [ActividadController::class, 'GetActividad']);
@@ -35,3 +34,4 @@ Route::delete('/actividad/{id}', [ActividadController::class, 'DeleteActividad']
 
 Route::post('/actividad/asignar', [ActividadController::class, 'AsignarActividadAPlaza']);
 Route::post('/plaza/resena', [ActividadController::class, 'CreateResena']);
+Route::delete('/plaza/resena/{id}', [ActividadController::class, 'DeleteResena']);

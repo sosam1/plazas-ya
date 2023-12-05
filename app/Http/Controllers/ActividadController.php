@@ -69,9 +69,17 @@ class ActividadController extends Controller
 
         $resena->save();
 
-        return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " " . $resena]);
+        return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
+                                " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion]);
 
+    }
 
+    public function DeleteResena(Request $request){
+        $id_resena = $request->id;
+        $resena = Resena::find($id_resena);
+        $resena->delete();
+
+        return response()->json(['message' => 'Reseña eliminada con exito']);
     }
 
 
