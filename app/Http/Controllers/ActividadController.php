@@ -60,7 +60,6 @@ class ActividadController extends Controller
     }
     
     public function CreateResena(Request $request){
-
         $resena = new Resena();
 
         $resena->id_plaza = $request->post('id_plaza');
@@ -71,7 +70,6 @@ class ActividadController extends Controller
 
         return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
                                 " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion]);
-
     }
 
     public function DeleteResena(Request $request){

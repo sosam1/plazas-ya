@@ -11,6 +11,7 @@ class PlazaController extends Controller
     public function CreatePlaza(Request $request){
 
         $plaza = new Plaza();
+        $plaza->nombre_plaza = $request->post('nombre_plaza');
         $plaza->direccion = $request->post('direccion');
         $plaza->descripcion = $request->post('descripcion');
         $plaza->latitud = $request->post('latitud');
@@ -32,6 +33,7 @@ class PlazaController extends Controller
     public function UpdatePlaza(Request $request){
 
         $plaza = Plaza::find($request->id);
+        $plaza->nombre_plaza = $request->nombre_plaza;
         $plaza->direccion = $request->direccion;
         $plaza->descripcion = $request->descripcion;
         $plaza->latitud = $request->latitud;

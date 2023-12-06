@@ -12,5 +12,5 @@ class Plaza extends Model
     protected $table = "plaza";
 
     public $timestamps = false;
-    protected $fillable = ['direccion', 'latitud', 'longitud'];
+    protected $fillable = [ 'nombre_plaza', 'direccion', 'latitud', 'longitud'];
 }
