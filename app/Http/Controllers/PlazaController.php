@@ -23,6 +23,7 @@ class PlazaController extends Controller
         $plaza->descripcion = $request->post('descripcion');
         $plaza->latitud = $request->post('latitud');
         $plaza->longitud = $request->post('longitud');
+        $plaza->valoracion = 0;
         
         $plaza->save();
         return $plaza;

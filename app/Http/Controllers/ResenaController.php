@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resena;
+use App\Models\Plaza;
 
 class ResenaController extends Controller
 {
@@ -26,8 +27,15 @@ class ResenaController extends Controller
         $resena->puntuacion = $request->post('puntuacion');
         $resena->save();
 
+        //calculo el promedio de las reseñas y lo inserto en la valoracion de la tabla Plaza
+        $promedio = Resena::where('id_plaza', $resena->id_plaza)->avg('puntuacion');
+        $plaza = Plaza::find($resena->id_plaza);
+        $plaza->valoracion = $promedio;
+        $plaza->save();
+
         return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
-                                " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion]);
+                                " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion .
+                                " Promedio; " . $promedio]);
     }
     public function DeleteResena(Request $request){
         $id_resena = $request->id;
