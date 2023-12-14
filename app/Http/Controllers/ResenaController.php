@@ -31,6 +31,11 @@ class ResenaController extends Controller
         $promedio = Resena::where('id_plaza', $resena->id_plaza)->avg('puntuacion');
         $plaza = Plaza::find($resena->id_plaza);
         $plaza->valoracion = $promedio;
+
+        //actualizo contador de reseñas en la tabla Plaza
+        $cantidad_resenas = Resena::where('id_plaza', $resena->id_plaza)->count();
+        $plaza->cantidad_resenas = $cantidad_resenas;
+
         $plaza->save();
 
         return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
@@ -41,6 +46,18 @@ class ResenaController extends Controller
         $id_resena = $request->id;
         $resena = Resena::find($id_resena);
         $resena->delete();
+
+        //calculo el promedio de las reseñas y lo inserto en la valoracion de la tabla Plaza
+        $promedio = Resena::where('id_plaza', $resena->id_plaza)->avg('puntuacion');
+        $plaza = Plaza::find($resena->id_plaza);
+        $plaza->valoracion = $promedio;
+
+        //actualizo contador de reseñas en la tabla Plaza
+        $cantidad_resenas = Resena::where('id_plaza', $resena->id_plaza)->count();
+        $plaza->cantidad_resenas = $cantidad_resenas;
+
+        $plaza->save();
+
         return response()->json(['message' => 'Reseña eliminada con exito']);
     }
 

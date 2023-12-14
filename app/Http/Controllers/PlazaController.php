@@ -24,6 +24,7 @@ class PlazaController extends Controller
         $plaza->latitud = $request->post('latitud');
         $plaza->longitud = $request->post('longitud');
         $plaza->valoracion = 0;
+        $plaza->cantidad_resenas = 0;
         
         $plaza->save();
         return $plaza;
@@ -35,7 +36,6 @@ class PlazaController extends Controller
         $plaza->descripcion = $request->descripcion;
         $plaza->latitud = $request->latitud;
         $plaza->longitud = $request->longitud;
-
 
         $plaza->save();
         return Plaza::find($request->id);
