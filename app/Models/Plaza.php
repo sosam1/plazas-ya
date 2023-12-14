@@ -10,7 +10,6 @@ class Plaza extends Model
     use HasFactory;
 
     protected $table = "plaza";
-
     public $timestamps = false;
     protected $fillable = [ 'nombre_plaza', 'direccion', 'latitud', 'longitud'];
 }

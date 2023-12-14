@@ -10,7 +10,6 @@ class Resena extends Model
     use HasFactory;
 
     protected $table = "resena";
-
     public $timestamps = false;
     protected $fillable = ['id_plaza', 'descripcion', 'puntuacion'];
 

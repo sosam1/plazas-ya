@@ -10,7 +10,6 @@ class Actividad extends Model
     use HasFactory;
 
     protected $table = "actividad";
-
     public $timestamps = false;
     protected $fillable = ['nombre'];
 }

@@ -8,8 +8,15 @@ use App\Models\Plaza;
 class PlazaController extends Controller
 {
     //
-    public function CreatePlaza(Request $request){
 
+    public function GetPlazas(){
+        return Plaza::all();
+    }
+
+    public function GetPlaza(Request $request){
+        return Plaza::find($request->id);
+    }
+    public function CreatePlaza(Request $request){
         $plaza = new Plaza();
         $plaza->nombre_plaza = $request->post('nombre_plaza');
         $plaza->direccion = $request->post('direccion');
@@ -19,19 +26,8 @@ class PlazaController extends Controller
         
         $plaza->save();
         return $plaza;
-
     }
-
-    public function GetPlazas(){
-        return Plaza::all();
-    }
-
-    public function GetPlaza(Request $request){
-        return Plaza::find($request->id);
-    }
-
     public function UpdatePlaza(Request $request){
-
         $plaza = Plaza::find($request->id);
         $plaza->nombre_plaza = $request->nombre_plaza;
         $plaza->direccion = $request->direccion;

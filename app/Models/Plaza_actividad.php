@@ -10,7 +10,6 @@ class Plaza_actividad extends Model
     use HasFactory;
 
     protected $table = "plaza_actividad";
-
     public $timestamps = false;
     protected $fillable = ['id_plaza', 'id_actividad'];
 }

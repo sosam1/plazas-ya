@@ -5,19 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Actividad;
 use App\Models\Plaza;
-use App\Models\Resena;
 use App\Models\Plaza_actividad;
 
 class ActividadController extends Controller
 {
     //
-    public function CreateActividad(Request $request){
-        $actividad = new Actividad();
-        $actividad->nombre = $request->post('nombre');
-        $actividad->save();
-
-        return $actividad;
-    }
 
     public function GetActividades(){
         return Actividad::all();
@@ -25,6 +17,13 @@ class ActividadController extends Controller
 
     public function GetActividad(Request $request){
         return Actividad::find($request->id);
+    }
+    public function CreateActividad(Request $request){
+        $actividad = new Actividad();
+        $actividad->nombre = $request->post('nombre');
+        $actividad->save();
+
+        return $actividad;
     }
     public function UpdateActividad(Request $request){
         $actividad = Actividad::find($request->id);
@@ -39,7 +38,6 @@ class ActividadController extends Controller
     }
 
     public function AsignarActividadAPlaza(Request $request){
-
         $idPlaza = $request->post('id_plaza');
         $idActividad = $request->post('id_actividad');
     
@@ -53,32 +51,9 @@ class ActividadController extends Controller
         $asignacion = new Plaza_actividad();
         $asignacion->id_plaza = $idPlaza;
         $asignacion->id_actividad = $idActividad;
-
         $asignacion->save();
     
         return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " " . $asignacion]);
     }
-    
-    public function CreateResena(Request $request){
-        $resena = new Resena();
-
-        $resena->id_plaza = $request->post('id_plaza');
-        $resena->descripcion = $request->post('descripcion');
-        $resena->puntuacion = $request->post('puntuacion');
-
-        $resena->save();
-
-        return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
-                                " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion]);
-    }
-
-    public function DeleteResena(Request $request){
-        $id_resena = $request->id;
-        $resena = Resena::find($id_resena);
-        $resena->delete();
-
-        return response()->json(['message' => 'Reseña eliminada con exito']);
-    }
-
 
 }
