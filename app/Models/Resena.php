@@ -11,6 +11,6 @@ class Resena extends Model
 
     protected $table = "resena";
     public $timestamps = false;
-    protected $fillable = ['id_plaza', 'descripcion', 'puntuacion'];
+    protected $fillable = ['id_plaza', 'descripcion', 'puntuacion', 'id_usuario'];
 
 }

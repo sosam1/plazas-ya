@@ -21,10 +21,23 @@ class ResenaController extends Controller
         return response()->json($resenas);
     }
     public function CreateResena(Request $request){
+        //verifico que el usuario no haya creado antes una reseña
+        $id_plaza = $request->post('id_plaza');
+        $id_usuario = $request->post('id_usuario');
+
+        $existingResena = Resena::where('id_plaza', $id_plaza)
+                            ->where('id_usuario', $id_usuario)
+                            ->first();
+
+        if ($existingResena) {
+            return response()->json(['error' => 'El usuario ya ha dejado una reseña para esta plaza.']);
+        }
+
         $resena = new Resena();
         $resena->id_plaza = $request->post('id_plaza');
         $resena->descripcion = $request->post('descripcion');
         $resena->puntuacion = $request->post('puntuacion');
+        $resena->id_usuario = $request->post('id_usuario');
         $resena->save();
 
         //calculo el promedio de las reseñas y lo inserto en la valoracion de la tabla Plaza
@@ -38,7 +51,7 @@ class ResenaController extends Controller
 
         $plaza->save();
 
-        return response()->json(['message' => 'Actividad asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
+        return response()->json(['message' => 'Reseña asignada a la plaza con éxito' . " id_plaza: " . $resena->id_plaza . 
                                 " descripción: " . $resena->descripcion . " puntuación: " . $resena->puntuacion .
                                 " Promedio; " . $promedio]);
     }
