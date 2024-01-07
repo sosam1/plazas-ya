@@ -62,6 +62,12 @@ class ResenaController extends Controller
 
         //calculo el promedio de las reseñas y lo inserto en la valoracion de la tabla Plaza
         $promedio = Resena::where('id_plaza', $resena->id_plaza)->avg('puntuacion');
+
+        if ($promedio === null) {
+            // Si el promedio es null, establece el valor de la valoración en 0 o cualquier otro valor predeterminado
+            $promedio = 0; // O cualquier otro valor predeterminado que desees establecer
+        }
+
         $plaza = Plaza::find($resena->id_plaza);
         $plaza->valoracion = $promedio;
 
